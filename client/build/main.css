@@ -3,7 +3,7 @@ body{
   background-color: aliceblue;
 }
 
-.audio{
+#audio{
   display: block;
 }
 

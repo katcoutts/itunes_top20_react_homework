@@ -21536,6 +21536,35 @@
 	var React = __webpack_require__(1);
 
 	var SongRow = function SongRow(props) {
+
+	  var audios = document.querySelectorAll('#audio');
+	  var _iteratorNormalCompletion = true;
+	  var _didIteratorError = false;
+	  var _iteratorError = undefined;
+
+	  try {
+	    for (var _iterator = audios[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	      var audio = _step.value;
+
+	      audio.load();
+	    }
+	  } catch (err) {
+	    _didIteratorError = true;
+	    _iteratorError = err;
+	  } finally {
+	    try {
+	      if (!_iteratorNormalCompletion && _iterator.return) {
+	        _iterator.return();
+	      }
+	    } finally {
+	      if (_didIteratorError) {
+	        throw _iteratorError;
+	      }
+	    }
+	  }
+
+	  ;
+
 	  return React.createElement(
 	    'div',
 	    { className: 'song-row' },
@@ -21552,7 +21581,7 @@
 	    React.createElement('img', { src: props.song['im:image'][2].label }),
 	    React.createElement(
 	      'audio',
-	      { controls: true, className: 'audio' },
+	      { controls: true, id: 'audio' },
 	      React.createElement('source', { src: props.song.link[1].attributes.href, type: props.song.link[1].attributes.type })
 	    )
 	  );
