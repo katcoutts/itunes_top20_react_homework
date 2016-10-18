@@ -21473,7 +21473,7 @@
 	  setGenre: function setGenre(event) {
 	    var newUrl = "https://itunes.apple.com/gb/rss/topsongs/limit=20/genre=" + event + "/json";
 	    console.log("new url", newUrl);
-	    this.setState({ url: newUrl });
+	    // this.setState({url: newUrl});
 	    this.makeRequest(newUrl);
 	  },
 
@@ -21482,7 +21482,7 @@
 	      'div',
 	      null,
 	      React.createElement(
-	        'h2',
+	        'h1',
 	        null,
 	        'iTunes Top 20'
 	      ),
@@ -21519,7 +21519,7 @@
 	    { className: 'song-list' },
 	    React.createElement(
 	      'ol',
-	      null,
+	      { className: 'custom-counter' },
 	      songNodes
 	    )
 	  );
@@ -21639,14 +21639,23 @@
 	    }
 
 	    return React.createElement(
-	      "select",
-	      { id: "songs", onChange: this.handleChange },
+	      "div",
+	      { id: "genre-picker" },
 	      React.createElement(
-	        "option",
-	        { selected: true, disabled: true },
-	        "Pick a genre"
+	        "h4",
+	        null,
+	        "Pick a genre to see the iTunes top 20"
 	      ),
-	      options
+	      React.createElement(
+	        "select",
+	        { id: "songs", onChange: this.handleChange },
+	        React.createElement(
+	          "option",
+	          { selected: true, disabled: true },
+	          "Pick a genre"
+	        ),
+	        options
+	      )
 	    );
 	  }
 

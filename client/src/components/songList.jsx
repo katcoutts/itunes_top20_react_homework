@@ -14,7 +14,7 @@ var SongList = function (props){
 
   return(
     <div className='song-list'>
-      <ol>
+      <ol className='custom-counter'>
         {songNodes}
       </ol>
     </div>

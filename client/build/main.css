@@ -7,7 +7,36 @@ body{
   display: block;
 }
 
-h2{
+h1{
   text-align: center;
 }
+
+#genre-picker{
+  text-align: center;
+}
+
+ol {
+    counter-reset: item;
+}
+ol li { 
+  display: inline-block 
+}
+
+li{
+  margin-top: 30px;
+  margin-left: 50px;
+}
+
+ol li:before {
+    content: counter(item) ". ";
+    counter-increment: item;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 20px;
+    color: darkblue;
+}
+
+
+
+
 

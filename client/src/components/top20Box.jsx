@@ -42,14 +42,14 @@ var Top20Box = React.createClass({
   setGenre: function(event){
     var newUrl = "https://itunes.apple.com/gb/rss/topsongs/limit=20/genre=" + event + "/json"
     console.log("new url" , newUrl)
-    this.setState({url: newUrl});
+    // this.setState({url: newUrl});
     this.makeRequest(newUrl);
   },
 
   render:function(){
     return(
       <div>
-        <h2>iTunes Top 20</h2>
+        <h1>iTunes Top 20</h1>
         <GenreSelector selectGenre={this.setGenre}></GenreSelector>
         <SongList songs = {this.state.songs}></SongList>
       </div>
