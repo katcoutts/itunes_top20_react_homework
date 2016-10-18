@@ -21484,7 +21484,7 @@
 	      React.createElement(
 	        'h2',
 	        null,
-	        'UK iTunes Top 20'
+	        'iTunes Top 20'
 	      ),
 	      React.createElement(GenreSelector, { selectGenre: this.setGenre }),
 	      React.createElement(SongList, { songs: this.state.songs })

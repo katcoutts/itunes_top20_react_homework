@@ -49,7 +49,7 @@ var Top20Box = React.createClass({
   render:function(){
     return(
       <div>
-        <h2>UK iTunes Top 20</h2>
+        <h2>iTunes Top 20</h2>
         <GenreSelector selectGenre={this.setGenre}></GenreSelector>
         <SongList songs = {this.state.songs}></SongList>
       </div>
