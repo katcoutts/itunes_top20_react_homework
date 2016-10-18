@@ -21612,6 +21612,11 @@
 	    return React.createElement(
 	      "select",
 	      { id: "songs", onChange: this.handleChange },
+	      React.createElement(
+	        "option",
+	        { selected: true, disabled: true },
+	        "Pick a genre"
+	      ),
 	      options
 	    );
 	  }

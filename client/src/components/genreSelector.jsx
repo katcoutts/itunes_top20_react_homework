@@ -37,6 +37,7 @@ var GenreSelector = React.createClass({
 
     return(
       <select id="songs" onChange={this.handleChange}>
+       <option selected disabled>Pick a genre</option>
        {options}
       </select>
     )
