@@ -21430,6 +21430,7 @@
 
 	var React = __webpack_require__(1);
 	var SongList = __webpack_require__(173);
+	var GenreSelector = __webpack_require__(175);
 
 	var Top20Box = React.createClass({
 	  displayName: 'Top20Box',
@@ -21454,6 +21455,28 @@
 	    request.send();
 	  },
 
+	  makeRequest: function makeRequest(newUrl) {
+	    var url = newUrl;
+	    var request = new XMLHttpRequest();
+	    request.open("GET", url);
+	    request.onload = function () {
+	      var data = JSON.parse(request.responseText);
+	      console.log(data);
+	      console.log("songs: ", data.feed.entry);
+	      this.setState({
+	        songs: data.feed.entry
+	      });
+	    }.bind(this);
+	    request.send();
+	  },
+
+	  setGenre: function setGenre(event) {
+	    var newUrl = "https://itunes.apple.com/gb/rss/topsongs/limit=20/genre=" + event + "/json";
+	    console.log("new url", newUrl);
+	    this.setState({ url: newUrl });
+	    this.makeRequest(newUrl);
+	  },
+
 	  render: function render() {
 	    return React.createElement(
 	      'div',
@@ -21461,8 +21484,9 @@
 	      React.createElement(
 	        'h2',
 	        null,
-	        'Top 20 Songs'
+	        'UK iTunes Top 20'
 	      ),
+	      React.createElement(GenreSelector, { selectGenre: this.setGenre }),
 	      React.createElement(SongList, { songs: this.state.songs })
 	    );
 	  }
@@ -21516,7 +21540,7 @@
 	    'div',
 	    { className: 'song-row' },
 	    React.createElement(
-	      'h4',
+	      'h3',
 	      null,
 	      props.song['im:collection']['im:name'].label
 	    ),
@@ -21535,6 +21559,66 @@
 	};
 
 	module.exports = SongRow;
+
+/***/ },
+/* 175 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var GenreSelector = React.createClass({
+	  displayName: "GenreSelector",
+
+
+	  getInitialState: function getInitialState() {
+	    return { genres: [] };
+	  },
+
+	  componentDidMount: function componentDidMount() {
+	    var url = "https://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/genres?id=34";
+	    var request = new XMLHttpRequest();
+	    request.open("GET", url);
+	    request.onload = function () {
+	      var data = JSON.parse(request.responseText);
+	      console.log(data);
+	      console.log("genres: ", data[34].subgenres);
+	      this.setState({
+	        genres: data[34].subgenres
+	      });
+	    }.bind(this);
+	    request.send();
+	  },
+
+	  handleChange: function handleChange(event) {
+	    var newId = event.target.value;
+	    console.log(newId);
+	    this.props.selectGenre(newId);
+	  },
+
+	  render: function render() {
+	    var options = [];
+	    console.log("this.state.genres: ", this.state.genres);
+	    for (var key in this.state.genres) {
+	      var option = React.createElement(
+	        "option",
+	        { key: key, value: this.state.genres[key].id },
+	        this.state.genres[key].name
+	      );
+	      options.push(option);
+	    }
+
+	    return React.createElement(
+	      "select",
+	      { id: "songs", onChange: this.handleChange },
+	      options
+	    );
+	  }
+
+	});
+
+	module.exports = GenreSelector;
 
 /***/ }
 /******/ ]);

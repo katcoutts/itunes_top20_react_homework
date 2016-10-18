@@ -3,7 +3,7 @@ var React = require('react')
 var SongRow = function(props){
     return(
       <div className='song-row'>
-       <h4 >{props.song['im:collection']['im:name'].label}</h4>
+       <h3>{props.song['im:collection']['im:name'].label}</h3>
        <h4>{props.song['im:artist'].label}</h4>
        <img src={props.song['im:image'][2].label}></img>
        <audio controls className="audio"> 
